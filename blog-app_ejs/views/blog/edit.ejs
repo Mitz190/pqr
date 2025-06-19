@@ -1,0 +1,33 @@
+<%- include('../partials/header', { userId: null }) %>
+
+<h2>Edit Blog</h2>
+<form method="POST" action="/blogs/edit/<%= blog._id %>">
+  <div class="mb-3">
+    <label>Title</label>
+    <input
+      type="text"
+      name="title"
+      value="<%= blog.title %>"
+      class="form-control"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label>Content</label>
+    <textarea name="content" class="form-control" rows="5" required>
+<%= blog.content %></textarea
+    >
+  </div>
+  <div class="mb-3">
+    <label>Image URL</label>
+    <input
+      type="text"
+      name="imageUrl"
+      value="<%= blog.imageUrl %>"
+      class="form-control"
+    />
+  </div>
+  <button class="btn btn-primary">Update</button>
+</form>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,30 @@
+<%- include('partials/header', { userId: null }) %>
+
+<h2>All Blogs</h2>
+<% blogs.forEach(blog => { %>
+<div class="card mb-4">
+  <div class="card-header">
+    <h4><%= blog.title %></h4>
+    <small>by <%= blog.author ? blog.author.username : 'Unknown' %></small>
+  </div>
+  <div class="card-body">
+    <p><%= blog.content %></p>
+    <% if (blog.imageUrl) { %>
+    <img src="<%= blog.imageUrl %>" class="img-fluid" alt="Blog Image" />
+    <% } %> <% if (blog.author && String(blog.author._id) === String(userId)) {
+    %>
+    <div class="mt-3">
+      <a href="/blogs/edit/<%= blog._id %>" class="btn btn-warning btn-sm"
+        >Edit</a
+      >
+      <a
+        href="/blogs/delete/<%= blog._id %>"
+        class="btn btn-danger btn-sm"
+        onclick="return confirm('Are you sure?')"
+        >Delete</a
+      >
+    </div>
+    <% } %>
+  </div>
+</div>
+<% }) %> <%- include('partials/footer') %>
